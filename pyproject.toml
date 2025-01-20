@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "MongoDB_Network_Security"
+version = "0.0.1"
+description = "A machine learning project using MongoDB."
+authors = [{name = "Mansy", email = "mansy.soroush@gmail.com"}]
+dependencies = [
+    "ipykernel",
+    "python-dotenv",
+    "pandas",
+    "numpy",
+    "pymongo",
+    "certifi",
+    "pymongo[srv]",
+    "scikit-learn",
+    "dill",
+    "mlflow",
+    "pyaml",
+    "dagshub",
+    "fastapi",
+    "uvicorn",
+    "python-multipart"
+]
