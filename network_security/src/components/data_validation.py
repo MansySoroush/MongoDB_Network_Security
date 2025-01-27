@@ -18,6 +18,7 @@ class DataValidation:
             self.data_validation_config=data_validation_config
 
             self._schema_config = read_yaml_file(SCHEMA_FILE_PATH)
+
         except Exception as e:
             raise NetworkSecurityException(e,sys)
         
@@ -30,7 +31,7 @@ class DataValidation:
         
     def validate_number_of_columns(self,dataframe:pd.DataFrame)->bool:
         try:
-            number_of_columns=len(self._schema_config)
+            number_of_columns=len(self._schema_config['columns'])
 
             logging.info(f"Required number of columns:{number_of_columns}")
             logging.info(f"Data frame has columns:{len(dataframe.columns)}")
@@ -93,6 +94,8 @@ class DataValidation:
 
             write_yaml_file(file_path=drift_report_file_path,content=report)
 
+            return status
+        
         except Exception as e:
             raise NetworkSecurityException(e,sys)
     
@@ -125,8 +128,15 @@ class DataValidation:
 
             validation_status = train_df_columns_status and test_df_columns_status and not train_df_has_non_numerical_columns and not test_df_has_non_numerical_columns
 
+            logging.info(f"Train-df | Number of columns validation: {train_df_columns_status}")
+            logging.info(f"Test-df | Number of columns validation: {test_df_columns_status}")
+            logging.info(f"Train-df | Non-numerical columns validation: {train_df_has_non_numerical_columns}")
+            logging.info(f"Test-df | Non-numerical columns validation: {test_df_has_non_numerical_columns}")
+
             # lets check data drift
             data_drift_status = self.detect_dataset_drift(base_df=train_dataframe,current_df=test_dataframe)
+
+            logging.info(f"Data drift status: {data_drift_status}")
 
             if not data_drift_status:
                 dir_path=os.path.dirname(self.data_validation_config.valid_train_file_path)
