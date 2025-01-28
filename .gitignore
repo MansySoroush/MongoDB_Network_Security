@@ -167,5 +167,6 @@ artifacts/
 logs/
 mlruns/
 final_model/
-
+prediction_output/
+valid_data/
 
