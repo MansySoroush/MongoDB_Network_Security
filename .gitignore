@@ -166,5 +166,6 @@ artifacts/
 .DS_Store
 logs/
 mlruns/
+final_model/
 
 
