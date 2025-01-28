@@ -165,5 +165,6 @@ catboost_info/
 artifacts/
 .DS_Store
 logs/
+mlruns/
 
 
