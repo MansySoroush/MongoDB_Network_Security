@@ -138,7 +138,7 @@ class DataValidation:
 
             logging.info(f"Data drift status: {data_drift_status}")
 
-            if not data_drift_status:
+            if data_drift_status:
                 dir_path=os.path.dirname(self.data_validation_config.valid_train_file_path)
                 os.makedirs(dir_path,exist_ok=True)
 

@@ -48,7 +48,7 @@ class DataTransformation:
         try:
             imputer:KNNImputer=KNNImputer(**DATA_TRANSFORMATION_IMPUTER_PARAMS)
             logging.info(
-                f"Initialise KNNImputer with {DATA_TRANSFORMATION_IMPUTER_PARAMS}"
+                f"Initialize KNNImputer with {DATA_TRANSFORMATION_IMPUTER_PARAMS}"
             )
             processor:Pipeline=Pipeline([("imputer",imputer)])
             return processor
@@ -63,12 +63,12 @@ class DataTransformation:
             train_df=DataTransformation.read_data(self.data_validation_artifact.valid_train_file_path)
             test_df=DataTransformation.read_data(self.data_validation_artifact.valid_test_file_path)
 
-            ## training dataframe
+            # training dataframe
             input_feature_train_df=train_df.drop(columns=[TARGET_COLUMN],axis=1)
             target_feature_train_df = train_df[TARGET_COLUMN]
             target_feature_train_df = target_feature_train_df.replace(-1, 0)
 
-            #testing dataframe
+            # testing dataframe
             input_feature_test_df = test_df.drop(columns=[TARGET_COLUMN], axis=1)
             target_feature_test_df = test_df[TARGET_COLUMN]
             target_feature_test_df = target_feature_test_df.replace(-1, 0)
